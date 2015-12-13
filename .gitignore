@@ -1,0 +1,10 @@
+res/
+data/
+bot/config.lua
+log.log
+README.md
+upstart.log
+launch.sh
+.git/
+.luarocks/
+tg/
