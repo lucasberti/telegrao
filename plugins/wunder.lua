@@ -4,8 +4,40 @@ local BASE_CONDITIONS = "http://api.wunderground.com/api/dbcee4e7c140bb2d/lang:B
 local BASE_FORECAST = "http://api.wunderground.com/api/dbcee4e7c140bb2d/lang:BR/forecast/q/"
 
 local function processConditions(conditions)
+	if conditions == "" then
+		return "pora n sei n da pra ve"
 
-	if conditions == "Possibilidade de Chuva" then
+	elseif conditions == "Bruma" then
+		return "VEI TA TD BRAMCO"
+	
+	elseif conditions == "Céu Limpo" then
+		return "LINPIN LINPJIN"
+
+	elseif conditions == "Céu Encoberto" then
+		return "ceu coberto con 1 endredonm"
+
+	elseif conditions == "Chuva" then
+		return "i vai chove em"
+
+	elseif conditions == "Chuva Fraca" then
+		return "una chuvinia lvevina"
+
+	elseif conditions == "Chuviscos Fracos" then
+		return "una chuvinia fraquinia hummmmmmmmm"
+
+	elseif conditions == "Muito Nublado" then
+		return "muitas nuve"
+
+	elseif conditions == "Neblina" then
+		return "presemsa d esnop dog"
+
+	elseif conditions == "Nuvens Dispersas" then
+		return "umas nove espalhada"
+
+	elseif conditions == "Parcialmente Nublado" then
+		return "1as nuve por ai"
+
+	elseif conditions == "Possibilidade de Chuva" then
 		return "vix tauves vai cai umas agua"
 
 	elseif conditions == "Possibilidade de Trovoada" then
@@ -14,41 +46,8 @@ local function processConditions(conditions)
 	elseif conditions == "Trovoada" then
 		return "vei vai da ums trovao mASA"
 
-	elseif conditions == "Muito Nublado" then
-		return "muitas nuve"
-
-	elseif conditions == "Parcialmente Nublado" then
-		return "1as nuve por ai"
-
-	elseif conditions == "Chuva" then
-		return "i vai chove em"
-
-	elseif conditions == "Bruma" then
-		return "VEI TA TD BRAMCO"
-
-	elseif conditions == "Chuva Fraca" then
-		return "una chuvinia lvevina"
-
-	elseif conditions == "Céu Limpo" then
-		return "LINPIN LINPJIN"
-
-	elseif conditions == "Neblina" then
-		return "presemsa d esnop dog"
-
-	elseif conditions == "Céu Encoberto" then
-		return "ceu coberto con 1 endredonm"
-
-	elseif conditions == "Nuvens Dispersas" then
-		return "umas nove espalhada"
-
-	elseif conditions == "Chuviscos Fracos" then
-		return "una chuvinia fraquinia hummmmmmmmm"
-
 	elseif conditions == "Trovoadas com Chuva" then
 		return "1s trovao c chuv"
-	
-	elseif conditions == "" then
-		return "pora n sei n da pra ve"
 	end
 end
 
