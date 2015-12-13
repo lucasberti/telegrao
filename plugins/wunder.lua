@@ -23,6 +23,9 @@ local function processConditions(conditions)
 	elseif conditions == "Chuva" then
 		return "i vai chove em"
 
+	elseif conditions == "Bruma" then
+		return "VEI TA TD BRAMCO"
+
 	elseif conditions == "Chuva Fraca" then
 		return "una chuvinia lvevina"
 
