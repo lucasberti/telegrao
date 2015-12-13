@@ -26,7 +26,7 @@ end
 -- Mensagem final ---- Variação: mensagem padrão
 local function sendMessageNoKeyboardNoGame(origin)
 	local API_TOCALL = API_BASE .. "chat_id=-" .. origin
-	.."&text=ok j adeu entam vo esconde os telclado ok&parse_mode=Markdown&reply_markup={\"hide_keyboard\": true}"
+	.."&text=ok kbo entam vo esconde os telclado ok&parse_mode=Markdown&reply_markup={\"hide_keyboard\": true}"
 
 	local ok, code, headers, status = https.request(API_TOCALL)
 end
