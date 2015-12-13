@@ -3,6 +3,7 @@ data/
 bot/config.lua
 log.log
 README.md
+upstart.log
 upstart.log?
 launch.sh
 .git/
