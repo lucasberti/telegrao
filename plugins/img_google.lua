@@ -13,9 +13,9 @@ function get_google_data(text)
   url = url.."&q="..URL.escape(text)
 
   local i = math.random(#api_keys)
-  local api_key = API.api_keys
-  if api_key then
-    url = url.."&key="..api_key
+
+  if api_keys then
+    url = url.."&key="..api_keys[i]
   end
 
   print(url)
