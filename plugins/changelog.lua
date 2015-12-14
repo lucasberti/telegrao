@@ -6,8 +6,8 @@ return {
 	description = "",
 	usage = "",
 	patterns = {
-		"^[!/]changelog[@PintaoBot]",
-
+		"^[!/]changelog",
+		"^[!/]changelog@PintaoBot",
 	},
 	run = run
 }

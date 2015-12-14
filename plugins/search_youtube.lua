@@ -1,7 +1,5 @@
 do
 
-local google_config = load_from_file('data/google.lua')
-
 local function httpsRequest(url)
   print(url)
   local res,code  = https.request(url)
@@ -13,9 +11,9 @@ local function searchYoutubeVideos(text)
   local url = 'https://www.googleapis.com/youtube/v3/search?'
   url = url..'part=snippet'..'&maxResults=4'..'&type=video'
   url = url..'&q='..URL.escape(text)
-  if google_config.api_keys then
-    local i = math.random(#google_config.api_keys)
-    local api_key = google_config.api_keys[i]
+  if _config.google_apis then
+    local i = math.random(#_config.google_apis)
+    local api_key = _config.google_apis[i]
     if api_key then
       url = url.."&key="..api_key
     end
