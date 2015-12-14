@@ -48,6 +48,9 @@ local function processConditions(conditions)
 
 	elseif conditions == "Trovoadas com Chuva" then
 		return "1s trovao c chuv"
+
+	elseif conditions == "Trovoadas Fracas e Chuva" then
+		return "troamvãoiizn i xhuvaaaaa"
 	end
 end
 
