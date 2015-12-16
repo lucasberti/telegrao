@@ -162,8 +162,8 @@ local function run(msg, matches)
 
 		-- Springles
 		if user_id == "121326431" then
-			--return getWeather("bage", "br")
-			return getWeather("pws:ISOPAULO61", "br")
+			return getWeather("bage", "br")
+			--return getWeather("pws:ISOPAULO61", "br")
 		end
 
 		-- Arroz
