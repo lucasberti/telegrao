@@ -3,7 +3,7 @@ local MAX_SECS = 60*3 -- 3 min timeout
 local TIMER_ENABLED = false
 
 local TOTAL = 1
-local CONFIRMED = 1
+local CONFIRMED = 0
 local WHICHGAME = ""
 
 local GLOBAL_CHATID = nil
@@ -125,7 +125,7 @@ local function run(msg, matches)
 
 	-- Evita que seja iniciado por engano e que tenha mais de 2 convites ao mesmo tempo
 	if #matches == 2 and TIMER_ENABLED == false then
-		WHO_CONFIRMED[whoisit] = "true"
+		--WHO_CONFIRMED[whoisit] = "true"
 
 		TOTAL = tonumber(matches[2])	
 		WHICHGAME = string.upper(matches[1])
