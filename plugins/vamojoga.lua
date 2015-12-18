@@ -63,7 +63,7 @@ local function resetEverything(link)
 	TIMER_ENABLED = false
 	SECS = 0
 	TOTAL = 1
-	CONFIRMED = 1
+	CONFIRMED = 0
 
 	WHO_CONFIRMED = { 	["14160874"]= "false",
 						["16631085"]= "false",
