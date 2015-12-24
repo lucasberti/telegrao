@@ -1,5 +1,5 @@
 local function run(msg,matches)
-	rename_chat("chat#id11672208", matches[1], ok_cb, cb_extra)
+	rename_chat(get_receiver(msg), matches[1], ok_cb, cb_extra)
 end
 
 

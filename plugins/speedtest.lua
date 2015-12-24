@@ -14,7 +14,8 @@ return {
 	description = "",
 	usage = "",
 	patterns = {
-		"^[!|/]speedtest$"
+		"^[!/]speedtest$",
+		"^[!/]speedtest@PintaoBot$"
 	},
 	run = run
 }

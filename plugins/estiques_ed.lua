@@ -160,7 +160,7 @@ function run(msg, matches)
 end
 
 function cron()
-	--print(secs)
+	print(secs)
 
 	if step == 0 then
 		secs = secs + 1
