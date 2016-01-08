@@ -171,6 +171,18 @@ function is_from_original_chat(msg)
   return var
 end
 
+-- Aeho
+function is_from_aeho(msg)
+  local var = false
+  -- Check users id in config
+  for v,user in pairs(_config.aeho_users) do
+    if user == msg.from.id then
+      var = true
+    end
+  end
+  return var
+end
+
 -- Returns the name of the sender
 function get_name(msg)
   local name = msg.from.first_name

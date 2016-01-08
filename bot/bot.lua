@@ -53,8 +53,9 @@ function msg_valid(msg)
 	print("from..." .. from_id)
   -- Before bot was started
   --                Eu                        Bea                     Bot                   Farinha                   Geta                      Arroz                   Miojo                     Gabriel                 Tadeu                       X                     Fabio                     Tiko                      Raul                    Springles                 Burn                     Yama                       Nigga                    Riogi                   Criativo                 Humberto                Monegat                  Brendow                     Ana                     Vinicius
-  if from_id == "14160874" or from_id == "16631085" or from_id == "82017295" or from_id == "16259040" or from_id == "25919148" or from_id == "35072014" or from_id == "43299772" or from_id == "44724368" or from_id == "49681384" or from_id == "52451934" or from_id == "77677283" or from_id == "80048195" or from_id == "85867003" or from_id == "121326431" or from_id == "177436074" or from_id == "120788811" or from_id == "82091383" or from_id == "71514705" or from_id == "26867717" or from_id == "24975729" or from_id == "52433246" or from_id == "102544375" or from_id == "158330365" or from_id == "63963724" then
-		if msg.date < now then
+  --if from_id == "14160874" or from_id == "16631085" or from_id == "82017295" or from_id == "16259040" or from_id == "25919148" or from_id == "35072014" or from_id == "43299772" or from_id == "44724368" or from_id == "49681384" or from_id == "52451934" or from_id == "77677283" or from_id == "80048195" or from_id == "85867003" or from_id == "121326431" or from_id == "177436074" or from_id == "120788811" or from_id == "82091383" or from_id == "71514705" or from_id == "26867717" or from_id == "24975729" or from_id == "52433246" or from_id == "102544375" or from_id == "158330365" or from_id == "63963724" then
+	if is_from_original_chat(msg) or is_from_aeho(msg) then
+  	if msg.date < now then
 			print('\27[36mNot valid: old msg\27[39m')
 			return false
 		end
