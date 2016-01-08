@@ -51,6 +51,9 @@ local function processConditions(conditions)
 
 	elseif conditions == "Trovoadas Fracas e Chuva" then
 		return "troamvãoiizn i xhuvaaaaa"
+	
+	else
+		return conditions
 	end
 end
 
@@ -147,7 +150,7 @@ local function run(msg, matches)
 
 		-- X
 		if user_id == "52451934" then
-			return getWeather("pws:ISOPAULO109", "br")
+			return getWeather("pws:ISOPAULO152", "br")
 		end
 
 		-- Burn
@@ -173,7 +176,7 @@ local function run(msg, matches)
 
 		-- Tadeu
 		if user_id == "49681384" then
-			return getWeather("pws:ISOPAULO184", "br")
+			return getWeather("SBSP", "br")
 		end
 
 		-- Fabio
@@ -190,6 +193,48 @@ local function run(msg, matches)
 		if user_id == "43299772" then
 			return getWeather("ilha solteira", "br")
 		end
+
+		-- -> Aehoo <--
+   	        -- Criativo (Pedro Lucas/PL)
+			if user_id == "26867717" then
+	  			return getWeather("SBMT", "br")
+			end
+
+			-- Riogi
+			if user_id == "71514705" then
+	  			return getWeather("SBMT", "br")
+			end
+
+			-- Matheus Santana
+			if user_id == "82091383" then
+	  			return getWeather("pws:ISOPAULO61", "br")
+			end
+
+			-- Yama (Fernando Hideki Yamamoto)
+			if user_id == "120788811" then
+	  			return getWeather("SBSP", "br")
+			end
+
+			-- 2berto (Humberto M. M. Duarte)
+		    if user_id == "24975729" then
+		      	return getWeather("SBSL", "br")
+		    end
+
+			-- Ana
+		    if user_id == "158330365" then
+		      	return getWeather("pws:ISOPAULO143", "br")
+		    end
+
+			-- Brendow
+		    if user_id == "102544375" then
+		      	return getWeather("SBMG", "br")
+		    end
+
+			-- Monegat
+		    if user_id == "52433246" then
+		      	return getWeather("SBMG", "br")
+		    end
+
 	end
 
 	if #matches == 1 then

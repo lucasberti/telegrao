@@ -30,7 +30,7 @@ function run(msg, matches)
 		send_document(receiver, "./data/misc/XisOHomemDaNoite.gif", ok_cb, cb_extra)
 	end
 
-	if msg.text == "xischupano" then
+	--[[if msg.text == "xischupano" then
 		send_audio(receiver, "./data/misc/xis chupano.mp3", ok_cb, cb_extra)
 	end
 
@@ -40,11 +40,7 @@ function run(msg, matches)
 	
 	if msg.text == "trevah" then
 		send_audio(receiver, "./data/misc/trevah.mp3", ok_cb, cb_extra)
-	end
-	
-	if string.find(matches[1], "churo") then	
-		send_audio(receiver, "./data/misc/churos.mp3", ok_cb, cb_extra)
-	end
+	end--]]
 	
 	if msg.text == "calma" then
 		return 'ok esto mais calmo obrigada'

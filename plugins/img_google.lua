@@ -100,15 +100,17 @@ function process_google_data(google, receiver, query)
 end
 
 function run(msg, matches)
-  local receiver = get_receiver(msg)
-  local text = matches[1]
-  local text_b64 = mime.b64(text)
-  local cached = cache[text_b64]
-  if cached then
-    process_google_data(cached, receiver, text)
-  else
-    local data = get_google_data(text)
-    process_google_data(data, receiver, text)
+  if is_from_original_chat(msg) then
+    local receiver = get_receiver(msg)
+    local text = matches[1]
+    local text_b64 = mime.b64(text)
+    local cached = cache[text_b64]
+    if cached then
+      process_google_data(cached, receiver, text)
+    else
+      local data = get_google_data(text)
+      process_google_data(data, receiver, text)
+    end
   end
 end
 
