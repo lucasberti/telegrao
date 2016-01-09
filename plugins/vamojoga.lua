@@ -136,7 +136,7 @@ local function run(msg, matches)
 		sendMessage(chatid, WHICHGAME)
 
 	-- Só é válido caso o convite não tenha chego ao máximo
-	elseif matches[1] == "EU VO" and CONFIRMED < TOTAL then
+	elseif matches[1] == "EU VO" and CONFIRMED < TOTAL and TIMER_ENABLED then
 		if WHO_CONFIRMED[whoisit] == "false" then
 
 			WHO_CONFIRMED[whoisit] = "true"
@@ -145,6 +145,17 @@ local function run(msg, matches)
 			hasEnded(get_receiver(msg))
 		else
 			return "mas veio vc ja vai :("
+		end
+
+	elseif matches[1] == "nemvo" and CONFIRMED < TOTAL and TIMER_ENABLED then
+		if WHO_CONFIRMED[whoisit] == "true" then
+
+			WHO_CONFIRMED[whoisit] = "false"
+			CONFIRMED = CONFIRMED - 1
+
+			hasEnded(get_receiver(msg))
+		else
+			return "mas veio vc nem ia memo kkk"
 		end
 	end
 
@@ -172,6 +183,7 @@ return {
 	patterns = {
 		"^[!|/]vamojoga (.*) ([2-9])$",
 		"^(EU VO)$",
+		"^(nemvo)$",
 		"^!(hide)$"
 	},
 	run = run,
