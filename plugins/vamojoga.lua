@@ -154,8 +154,6 @@ local function run(msg, matches)
 			CONFIRMED = CONFIRMED - 1
 
 			hasEnded(get_receiver(msg))
-		else
-			return "mas veio vc nem ia memo kkk"
 		end
 	end
 
