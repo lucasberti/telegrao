@@ -115,51 +115,52 @@ local function hasEnded(target)
 end
 
 local function run(msg, matches)
-	
-	local chatid = get_receiver(msg)
-	chatid = tostring(chatid):gsub('chat#id', '')
+	if is_from_original_chat(msg) then
+		local chatid = get_receiver(msg)
+		chatid = tostring(chatid):gsub('chat#id', '')
 
-	GLOBAL_CHATID = chatid
+		GLOBAL_CHATID = chatid
 
-	local whoisit = tostring(msg.from.id)
+		local whoisit = tostring(msg.from.id)
 
-	-- Evita que seja iniciado por engano e que tenha mais de 2 convites ao mesmo tempo
-	if #matches == 2 and TIMER_ENABLED == false then
-		--WHO_CONFIRMED[whoisit] = "true"
+		-- Evita que seja iniciado por engano e que tenha mais de 2 convites ao mesmo tempo
+		if #matches == 2 and TIMER_ENABLED == false then
+			--WHO_CONFIRMED[whoisit] = "true"
 
-		TOTAL = tonumber(matches[2])	
-		WHICHGAME = string.upper(matches[1])
-		TIMER_ENABLED = true
-		
-		hasEnded(get_receiver(msg))
-		
-		sendMessage(chatid, WHICHGAME)
-
-	-- Só é válido caso o convite não tenha chego ao máximo
-	elseif matches[1] == "EU VO" and CONFIRMED < TOTAL and TIMER_ENABLED then
-		if WHO_CONFIRMED[whoisit] == "false" then
-
-			WHO_CONFIRMED[whoisit] = "true"
-			CONFIRMED = 1 + CONFIRMED
-
+			TOTAL = tonumber(matches[2])	
+			WHICHGAME = string.upper(matches[1])
+			TIMER_ENABLED = true
+			
 			hasEnded(get_receiver(msg))
-		else
-			return "mas veio vc ja vai :("
+			
+			sendMessage(chatid, WHICHGAME)
+
+		-- Só é válido caso o convite não tenha chego ao máximo
+		elseif matches[1] == "EU VO" and CONFIRMED < TOTAL and TIMER_ENABLED then
+			if WHO_CONFIRMED[whoisit] == "false" then
+
+				WHO_CONFIRMED[whoisit] = "true"
+				CONFIRMED = 1 + CONFIRMED
+
+				hasEnded(get_receiver(msg))
+			else
+				return "mas veio vc ja vai :("
+			end
+
+		elseif matches[1] == "nemvo" and CONFIRMED < TOTAL and TIMER_ENABLED then
+			if WHO_CONFIRMED[whoisit] == "true" then
+
+				WHO_CONFIRMED[whoisit] = "false"
+				CONFIRMED = CONFIRMED - 1
+
+				hasEnded(get_receiver(msg))
+			end
 		end
 
-	elseif matches[1] == "nemvo" and CONFIRMED < TOTAL and TIMER_ENABLED then
-		if WHO_CONFIRMED[whoisit] == "true" then
-
-			WHO_CONFIRMED[whoisit] = "false"
-			CONFIRMED = CONFIRMED - 1
-
-			hasEnded(get_receiver(msg))
+		-- Override manual
+		if matches[1] == "hide" and is_sudo(msg) then
+			resetEverything()
 		end
-	end
-
-	-- Override manual
-	if matches[1] == "hide" and is_sudo(msg) then
-		resetEverything()
 	end
 end
 
