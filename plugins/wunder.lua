@@ -2,6 +2,7 @@ do
 
 local BASE_CONDITIONS = "http://api.wunderground.com/api/dbcee4e7c140bb2d/lang:BR/conditions/q/"
 local BASE_FORECAST = "http://api.wunderground.com/api/dbcee4e7c140bb2d/lang:BR/forecast/q/"
+local BASE_SATELLITE = "http://api.wunderground.com/api/dbcee4e7c140bb2d/animatedsatellite/q/"
 
 local function processConditions(conditions)
 	if conditions == "" then
@@ -90,7 +91,7 @@ local function getForecast(city, country)
 	end
 end
 
-local function getWeather(city, country)
+local function getWeather(city, country, msg)
 	print("Finding weather in " .. city .. ' ' .. country)
 	local url = BASE_CONDITIONS
 	url = url..country..'/'..city..'.json'
@@ -110,7 +111,12 @@ local function getWeather(city, country)
 	local wind_vel = tostring(resp.current_observation.wind_kph)
 	local wind_from = resp.current_observation.wind_dir
 
-	local forecast_string = getForecast(city, country) 
+	local forecast_string = getForecast(city, country)
+
+
+	local satellite_url = BASE_SATELLITE..country..'/'..city..'.gif?basemap=1&timelabel=1&timelabel.y=10&num=5&delay=50&radius=500&radunits=km&borders=1&key=sat_ir4'	
+	send_document_from_url(get_receiver(msg), satellite_url) 
+
 
 	local temp = 'EITA PORA a tenps em '..cityname..
 	' eh d ' ..temp_c.. ' con uma sensasaosinha d ' ..feels_c ..'\n'..
@@ -130,120 +136,120 @@ local function run(msg, matches)
 
 		-- Eu
 		if user_id == "14160874" then
-			return getWeather('presidente bernardes', 'br')
+			return getWeather("presidente bernardes", "br", msg)
 		end
 
 		-- Bea
 		if user_id == "16631085" then
-			return getWeather("guaramirim", "br")
+			return getWeather("guaramirim", "br", msg)
 		end
 
 		-- Farinha
 		if user_id == "16259040" then
-			return getWeather("pws:INITERI3", "br")
+			return getWeather("pws:INITERI3", "br", msg)
 		end
 
 		-- Geta
 		if user_id == "25919148" then
-			return getWeather("lages", "br")
+			return getWeather("lages", "br", msg)
 		end
 
 		-- X
 		if user_id == "52451934" then
-			return getWeather("pws:ISOPAULO152", "br")
+			return getWeather("pws:ISOPAULO152", "br", msg)
 		end
 
 		-- Burn
 		if user_id == "177436074" then
-			return getWeather("sbur", "br")
+			return getWeather("sbur", "br", msg)
 		end
 
 		-- Tiko
 		if user_id == "80048195" then
-			return getWeather("pws:ICURITIB6", "br")
+			return getWeather("pws:ICURITIB6", "br", msg)
 		end
 
 		-- Springles
 		if user_id == "121326431" then
-			return getWeather("bage", "br")
-			--return getWeather("pws:ISOPAULO61", "br")
+			return getWeather("bage", "br", msg)
+			--return getWeather("pws:ISOPAULO61", "br", msg)
 		end
 
 		-- Arroz
 		if user_id == "35072014" then
-			return getWeather("pws:ISOPAULO141", "br")
+			return getWeather("pws:ISOPAULO141", "br", msg)
 		end
 
 		-- Tadeu
 		if user_id == "49681384" then
-			return getWeather("SBSP", "br")
+			return getWeather("SBSP", "br", msg)
 		end
 
 		-- Fabio
 		if user_id == "77677283" then
-			return getWeather("lages", "br")
+			return getWeather("lages", "br", msg)
 		end
 
 		-- Raul
 		if user_id == "85867003" then
-			return getWeather("marau", "br")
+			return getWeather("marau", "br", msg)
 		end
 
 		-- Miojo
 		if user_id == "43299772" then
-			return getWeather("ilha solteira", "br")
+			return getWeather("ilha solteira", "br", msg)
 		end
 
 		-- -> Aehoo <--
    	        -- Criativo (Pedro Lucas/PL)
 			if user_id == "26867717" then
-	  			return getWeather("SBMT", "br")
+	  			return getWeather("SBMT", "br", msg)
 			end
 
 			-- Riogi
 			if user_id == "71514705" then
-	  			return getWeather("SBMT", "br")
+	  			return getWeather("SBMT", "br", msg)
 			end
 
 			-- Matheus Santana
 			if user_id == "82091383" then
-	  			return getWeather("pws:ISOPAULO61", "br")
+	  			return getWeather("pws:ISOPAULO61", "br", msg)
 			end
 
 			-- Yama (Fernando Hideki Yamamoto)
 			if user_id == "120788811" then
-	  			return getWeather("SBSP", "br")
+	  			return getWeather("SBSP", "br", msg)
 			end
 
 			-- 2berto (Humberto M. M. Duarte)
 		    if user_id == "24975729" then
-		      	return getWeather("SBSL", "br")
+		      	return getWeather("SBSL", "br", msg)
 		    end
 
 			-- Ana
 		    if user_id == "158330365" then
-		      	return getWeather("pws:ISOPAULO143", "br")
+		      	return getWeather("pws:ISOPAULO143", "br", msg)
 		    end
 
 			-- Brendow
 		    if user_id == "102544375" then
-		      	return getWeather("SBMG", "br")
+		      	return getWeather("SBMG", "br", msg)
 		    end
 
 			-- Monegat
 		    if user_id == "52433246" then
-		      	return getWeather("SBMG", "br")
+		      	return getWeather("SBMG", "br", msg)
 		    end
 
 	end
 
 	if #matches == 1 then
-		local text = getWeather(matches[1], 'Br')
+		local text = getWeather(matches[1], "br")
 		return text
 	end
 
 	if #matches == 2 then
-		local text = getWeather(matches[1], matches[2])
+		local text = getWeather(matches[1], matches[2], msg)
 		return text
 	end
 
