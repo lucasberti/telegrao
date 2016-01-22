@@ -113,7 +113,7 @@ local function getWeather(city, country, msg)
 
 	local forecast_string = getForecast(city, country)
 
-
+	-- Mapa a cores, horário das imagens, 5 frames, 500ms de delay, raio de 500km, bordas do país, satélite infravermelho
 	local satellite_url = BASE_SATELLITE..country..'/'..city..'.gif?basemap=1&timelabel=1&timelabel.y=10&num=5&delay=50&radius=500&radunits=km&borders=1&key=sat_ir4'	
 	send_document_from_url(get_receiver(msg), satellite_url) 
 
@@ -244,7 +244,7 @@ local function run(msg, matches)
 	end
 
 	if #matches == 1 then
-		local text = getWeather(matches[1], "br")
+		local text = getWeather(matches[1], "br", msg)
 		return text
 	end
 
