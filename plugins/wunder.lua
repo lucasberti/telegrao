@@ -130,13 +130,34 @@ local function getWeather(city, country, msg)
 end
 
 local function run(msg, matches)
-	user_id = tostring(msg.from.id)
+	local user_id = tostring(msg.from.id)
+	local current_hour = tonumber(os.date("%H"))
+	local current_day = tonumber(os.date("%a"))
 
 	if msg.text == "!wunder" or msg.text == "/wunder" or msg.text == "/wunder@PintaoBot" then
 
 		-- Eu
 		if user_id == "14160874" then
-			return getWeather("presidente bernardes", "br", msg)
+
+			-- Depende se estou em horário de aula na Unoeste ou não
+			if current_day == "Monday" then
+				if current_hour >= 7 and current_hour <= 18 then
+					return getWeather("presidente prudente", "br", msg)
+				else
+					return getWeather("presidente bernardes", "br", msg)
+				end
+
+			elseif current_day ~= "Sunday" or current_day ~= "Saturday" then
+				if current_hour >= 7 and current_hour <= 13 then
+					return getWeather("presidente prudente", "br", msg)
+				else
+					return getWeather("presidente bernardes", "br", msg)
+				end
+				
+			else
+				return getWeather("presidente bernardes", "br", msg)
+			end
+
 		end
 
 		-- Bea
