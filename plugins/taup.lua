@@ -13,13 +13,12 @@ function run(msg, matches)
 		return 'SIM, TÔ AQUI PORA'
 	end
 	
-	if msg.text == "tuturutu" then
-		local cb_extra = {
-			file_path = file_path,
-			cb_function = cb_function,
-			cb_extra = cb_extra
-		}
-		send_document(receiver, "./data/misc/tuturutu.ogg", ok_cb, cb_extra)
+	if string.find(matches[1], "@todomundo") then
+		return '@berti @beaea @getulhao @rauzao @xisteaga @oburnao @tikomico'
+	end
+
+	if msg.text == "!historia" then
+		return 'https://www.youtube.com/watch?v=ZkwdNcrIbxs'
 	end
 	
 	if msg.text == "xisrico" then

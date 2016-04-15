@@ -5,17 +5,15 @@
 --]]
 do
 
-function translate(source_lang, target_lang, text)
-  local path = "http://translate.google.com/translate_a/t"
+function translate(source_lang, target_lang, query)
+  local path = "https://translate.yandex.net/api/v1.5/tr.json/translate?"
   -- URL query parameters
+
+
   local params = {
-    client = "z", -- JSON
-    ie = "UTF-8",
-    oe = "UTF-8",
-    hl = "en",
-    tl = target_lang or "en",
-    sl = source_lang or "",
-    text = URL.escape(text)
+    lang = "pt",
+    key = _config.yandex_api,
+    text = URL.escape(query)
   }
 
   local query = format_http_params(params, true)
@@ -26,14 +24,15 @@ function translate(source_lang, target_lang, text)
   if tonumber(code) > 200 then return nil end
   
   local trans = json:decode(res)
+  print(trans)
   
-  local sentences = ""
+  --[[local sentences = ""
   -- Join multiple sencentes
-  for k,sentence in pairs(trans.sentences) do
-    sentences = sentences..sentence.trans..'\n'
-  end
+  for k,translatedResults in pairs(trans.text) do
+    sentences = sentences .. translatedResults..'\n'
+  end--]]
 
-  return sentences
+  return trans.text[0]
 end
 
 function run(msg, matches)
