@@ -8,7 +8,7 @@ function run(msg, matches)
                   'n vo temfla agr mlh n','agr n da pradise',
                   'CONCETRA DIRETO E DPS PERGUNT NDEONV','n comtecom isto',
                   'a rpesita e nao','me flaaram q n','hmm n parese bmo',
-                  'mei difisl'}
+                  'mei difisl', 'ai naum veio', 'asim num da', 'te parese'}
   return answers[math.random(#answers)]
 end
 

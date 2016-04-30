@@ -91,19 +91,19 @@ local function hasEnded(target)
 	if CONFIRMED == TOTAL then
 		send_msg(target, WHICHGAME .. " " .. CONFIRMED .. "/" .. TOTAL, ok_cb, false) -- Contagem a cada voto recebido
 
-		if WHICHGAME == "CSGO" or WHICHGAME == "CS" or WHICHGAME == "CONTER" or WHICHGAME == "COUNTER STRIKE" then
+		if string.find(WHICHGAME, "CSGO") or string.find(WHICHGAME, "CS") or string.find(WHICHGAME, "CONTER") or string.find(WHICHGAME, "COUNTER STRIKE") then
 			resetEverything("http://162.252.243.88/csgo")
 
-		elseif WHICHGAME == "RL" or WHICHGAME == "ROCKET LEAGUE" or WHICHGAME == "ROCKET" then
+		elseif string.find(WHICHGAME, "RL") or string.find(WHICHGAME, "ROCKET LEAGUE") or string.find(WHICHGAME, "ROCKET") then
 			resetEverything("http://162.252.243.88/rocketleague")
 
-		elseif WHICHGAME == "GTA" or WHICHGAME == "GRAND THEFT AUTO" or WHICHGAME == "GTAV"  or WHICHGAME == "GTA V" or WHICHGAME == "GTA5" or WHICHGAME == "GTA 5" then 
+		elseif string.find(WHICHGAME, "GTA") or string.find(WHICHGAME, "GRAND THEFT AUTO") or string.find(WHICHGAME, "GTAV") or string.find(WHICHGAME, "GTA V") or string.find(WHICHGAME, "GTA5") or string.find(WHICHGAME, "GTA 5") then 
 			resetEverything("http://162.252.243.88/gta")
 
-		elseif WHICHGAME == "ETS2" or WHICHGAME == "EUROTRUCK" or WHICHGAME == "EURO TRUCK" then
+		elseif string.find(WHICHGAME, "ETS2") or string.find(WHICHGAME, "EUROTRUCK") or string.find(WHICHGAME, "EURO TRUCK") then
 			resetEverything("http://162.252.243.88/eurotruck")
 
-		elseif WHICHGAME == "DOTA" or WHICHGAME == "DOTA2" or WHICHGAME == "DOTA 2" or WHICHGAME == "DOTINHA" then
+		elseif string.find(WHICHGAME, "DOTA") or string.find(WHICHGAME, "DOTA2") or string.find(WHICHGAME, "DOTA 2") or string.find(WHICHGAME, "DOTINHA") then
 			resetEverything("http://162.252.243.88/dota")
 
 		else

@@ -244,7 +244,7 @@ local function run(msg, matches)
 
 			-- 2berto (Humberto M. M. Duarte)
 		    if user_id == "24975729" then
-		      	return getWeather("SBSL", "br", msg)
+		      	return getWeather("pws:IPALMAS4", "br", msg)
 		    end
 
 			-- Ana
@@ -260,6 +260,11 @@ local function run(msg, matches)
 			-- Monegat
 		    if user_id == "52433246" then
 		      	return getWeather("SBMG", "br", msg)
+		    end
+
+		    -- Glauber
+			if user_id == "78977189" then
+		      	return getWeather("pws:IGOISGOI5", "br", msg)
 		    end
 
 	end
