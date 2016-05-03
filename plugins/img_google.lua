@@ -100,7 +100,7 @@ function process_google_data(google, receiver, query)
 end
 
 function run(msg, matches)
-  if is_from_original_chat(msg) then
+  if is_from_original_chat(msg) or is_from_somewhere(msg) then
     local receiver = get_receiver(msg)
     local text = matches[1]
     local text_b64 = mime.b64(text)

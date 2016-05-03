@@ -52,7 +52,7 @@ function msg_valid(msg)
 	local from_id = tostring(msg.from.id)
 	print("from..." .. from_id)
   -- Before bot was started
-	if is_from_original_chat(msg) or is_from_aeho(msg) then
+	if is_from_original_chat(msg) or is_from_aeho(msg) or is_from_somewhere(msg) then
   	if msg.date < now then
 			print('\27[36mNot valid: old msg\27[39m')
 			return false
