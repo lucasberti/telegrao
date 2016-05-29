@@ -78,6 +78,8 @@ local function get_stats_status(msg)
     end
   )
 
+  local total = 0
+
   for id, user in pairs(rank) do
     -- Previous versions didn't save that
     user_id = user.user_id or ''
@@ -87,8 +89,11 @@ local function get_stats_status(msg)
     else
       text = text..user.name..": "..user.msg_num.."\n"
     end
+    total = total + user.msg_num
   end
   print("usuarios: "..text)
+
+  text = text .. "\n\ntootau:::: " .. total
   return text
 end
 

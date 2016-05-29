@@ -265,6 +265,11 @@ function run(msg, matches)
 			return queryAPI("76561198043606048", msg)
 		end
 
+		-- Fernando
+		if user_id == "180594627" then
+			return queryAPI("76561198084616294", msg)
+		end
+
 	else
 		return queryAPI(matches[1], msg)
 	end

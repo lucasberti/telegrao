@@ -49,7 +49,12 @@ function run(msg, matches)
 		return '162.252.243.88'
 	end
 
+	if msg.text == "!batolfild" or msg.text == "!bf3" or msg.text == "!battlefield3" then
+		return 'http://battlelog.battlefield.com/bf3/servers/'
+	end
+
 	if string.find(string.lower(matches[1]), "reloada") then
+		io.popen('screen -S reborn -X stuff "./echobot^M"')
 		reload_plugins(msg)
 	end
 	
