@@ -14,7 +14,7 @@ function run(msg, matches)
 	end
 	
 	if string.find(matches[1], "@todomundo") then
-		return '@berti @beaea @getulhao @rauzao @xisteaga @oburnao @tikomico'
+		return '@berti @beaea @getulhao @rauzao @xisteaga @Tikomico'
 	end
 
 	if msg.text == "!historia" then
