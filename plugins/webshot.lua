@@ -20,7 +20,8 @@ local function get_webshot_url(param)
 
    local arguments = {
       urlparam = param,
-      size = "FULL"
+      size = "FULL",
+      cacheLimit = 0
    }
 
    request_constructor.url = url .. "?" .. helpers.url_encode_arguments(arguments)
@@ -39,7 +40,7 @@ local function run(msg, matches)
    if find then
       local imgurl = base .. find
       local receiver = get_receiver(msg)
-      send_photo_from_url(receiver, imgurl)
+      send_document_from_url(receiver, imgurl)
    end
 end
 

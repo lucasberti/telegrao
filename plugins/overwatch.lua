@@ -1,3 +1,5 @@
+local url = "https://api.lootbox.eu/pc/us/"
+
 function toEdLanguage(text)
   local translator = {
     { "&#xFA;", "ú" },
@@ -19,9 +21,28 @@ function toEdLanguage(text)
 
 end
 
-local function queryHeroes(who)
-	local url = "https://api.lootbox.eu/pc/us/"
+local function queryAllHeroes(who)
+	local url_ow = url .. who .. "/allHeroes/"
+	print(url_ow)
 
+	local res, code = https.request(url_ow)
+	local resp = json:decode(res)
+
+	local text = ""
+
+	text = text .. "elimino:: " .. resp.Eliminations ..
+	" (na vdd mato so " .. resp.SoloKills ..
+	"))\nmoreu::: " .. resp.Deaths ..
+	"\nscor:: " .. resp.Score ..
+	"\ndano q ja deu:: " .. resp.DamageDone .. 
+	"\nkura q ja fes:: " .. resp.HealingDone .. 
+	"\ntenpo n obetivo:: " .. resp.ObjectiveTime .. 
+	"\ntenpo en xamas:: " .. resp.TimeSpentonFire .. "\n\n"
+
+	return text
+end
+
+local function queryHeroes(who)
 	local url_ow = url .. who .. "/heroes"
 	print(url_ow)
 
@@ -33,7 +54,9 @@ local function queryHeroes(who)
 
 	for _,v in pairs(resp) do
 		if (v.playtime ~= "--" and count < 5) then
-			text = text .. "eroi:: " .. toEdLanguage(v.name) .."\ntenpo d jogo::: " .. toEdLanguage(v.playtime) .. "\nbct::: " .. v.percentage .. "%%\n\n"
+			text = text .. "eroi:: " .. toEdLanguage(v.name) .. 
+			"\ntenpo d jogo::: " .. toEdLanguage(v.playtime) .. 
+			"\n¨% d prgresso::: " .. string.format("%.1f", v.percentage * 100) .. "%\n\n"
 			count = count + 1
 		end
 	end
@@ -42,21 +65,25 @@ local function queryHeroes(who)
 end
 
 local function queryProfile(who)
-	local url = "https://api.lootbox.eu/pc/us/"
-
 	local url_ow = url .. who .. "/profile"
 	print(url_ow)
 
 	local res, code = https.request(url_ow)
 	local resp = json:decode(res)
 
-	local text = resp.data.username .. " jogo " .. toEdLanguage(resp.data.playtime) .. " i ten lelve " .. resp.data.level .. ".\njogo " .. resp.data.games.played .. " pratidias perdeu " .. resp.data.games.lost .. " i ganho " .. resp.data.games.wins .. " entao tem %%¨ di ganhagen de " .. resp.data.games.win_percentage .. "¨&¨%%%\n\n"
+	local text = resp.data.username .. " jogo " .. toEdLanguage(resp.data.playtime) ..
+	" i ten lelve " .. resp.data.level ..
+	".\njogo " .. resp.data.games.played ..
+	" pratidias perdeu " .. resp.data.games.lost ..
+	" i ganho " .. resp.data.games.wins ..
+	" entao tem %¨ di ganhagen de " .. resp.data.games.win_percentage .. "¨&¨%\n\n"
 
-	return text .. queryHeroes(who)
+	return text .. queryAllHeroes(who) .. queryHeroes(who)
 end
 
 function run(msg, matches)
 	user_id = tostring(msg.from.id)
+	local who = matches[1]
 
 	if msg.text == "!overwatch" or msg.text == "!ow" or msg.text == "/overwatch" or msg.text == "/overwatch@PintaoBot" then
 
@@ -75,8 +102,13 @@ function run(msg, matches)
 			return queryProfile("Retcha-11793")
 		end
 
+		-- Tiko
+		if user_id == "80048195" then
+			return queryProfile("Tikomico-1650")
+		end
+
 	else
-		return queryProfile(matches[1])
+		return queryProfile(who)
 	end
 
 end

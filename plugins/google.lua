@@ -1,73 +1,70 @@
-function googlethat(query)
-  local api        = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&"
-  local parameters = "&lr=lang_pt&q=".. (URL.escape(query) or "")
+do
+local mime = require("mime")
 
-  -- Do the request
-  print(api..parameters)
-  local res, code = https.request(api..parameters)
-  if code ~=200 then return nil  end
-  local data = json:decode(res)
-  local results={}
-  for key,result in ipairs(data.responseData.results) do
-    table.insert(results,{result.titleNoFormatting, result.url})
-  end
-  return results
+local cache = {}
+
+local api_keys = _config.google_apis
+
+function get_google_data(text)
+	local url = "https://www.googleapis.com/customsearch/v1?"
+	url = url.."cx=006518944303354753471:drpbskdyusc"
+	url = url.."&hl=pt-BR"
+	url = url.."&q="..URL.escape(text)
+
+	local i = math.random(#api_keys)
+
+	if api_keys then
+		url = url.."&key="..api_keys[i]
+	end
+
+	print(url)
+
+	local res, code = https.request(url)
+
+	if code ~= 200 then
+		print("HTTP Error code:", code)
+		return nil
+	end
+
+	local google = json:decode(res)
+	return google
 end
 
-function stringlinks(results)
-  local stringresults=""
-  for key,val in ipairs(results) do
-	cleanup_html(val[1])
-	cleanup_html(val[2])
-    stringresults=stringresults..cleanup_html(val[1]).." - "..cleanup_html(val[2]).."\n"
-  end
-  return stringresults
-end
 
-function cleanup_html(text)
+function process_google_data(google, receiver, query)
+	local text = ""
 
-  local cleaner = {
-    { "&nbsp;", " " },
-    { "&amp;", "&" }, 
-	{ "&quot;", "\"" },
-    { "&#151;", "-" }, 
-    { "&#146;", "'" }, 
-    { "&#147;", "\"" }, 
-    { "&#148;", "\"" }, 
-    { "&#150;", "-" }, 
-    { "&#160;", " " }, 
-    { "<br ?/?>", "\n" }, 
-    { "</p>", "\n" }, 
-    { "(%b<>)", "" }, 
-    { "\r", "\n" }, 
-    { "[\n\n]+", "\n" }, 
-    { "^\n*", "" }, 
-	{ "%%3F", "?" },
-	{ "%%3D", "=" },
-    { "\n*$", "" }, 
-  }
+	if not google or not google.items or #google.items == 0 then
+		return "n achei"
+	end
 
-  
-  for i=1, #cleaner do
-    local cleans = cleaner[i]
-    text = string.gsub(text, cleans[1], cleans[2])
-  end
+	text = text .. "axei " .. google.searchInformation.formattedTotalResults .. " resultraods!!!! mas ta aki o top 5??\n\n"
 
-  return text
+	for i=1,5 do
+		text = text .. google.items[i].title .. "\n" .. google.items[i].snippet .. "\n" .. google.items[i].link .. "\n\n"
+	end
+
+	return text
+
 end
 
 function run(msg, matches)
-  vardump(matches)
-  local results = googlethat(matches[1])
-  return stringlinks(results)
+	if is_from_original_chat(msg) or is_from_somewhere(msg) then
+		local receiver = get_receiver(msg)
+		local text = matches[1]
+		local data = get_google_data(text)
+		return process_google_data(data, receiver, text)
+  	end
 end
 
 return {
-  description = "Searches Google and send results",
-  usage = "!google [terms]: Searches Google and send results",
-  patterns = {
-    "^!google (.*)$",
-    "^%.[g|G]oogle (.*)$"
-  },
-  run = run
+	description = "Searches Google and send results",
+	usage = "!google [terms]: Searches Google and send results",
+	patterns = {
+		"^[!/]google (.*)$",
+		"^[!/]google@PintaoBot (.*)$"
+	},
+	run = run
 }
+
+end
