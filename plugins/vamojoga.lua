@@ -92,19 +92,22 @@ local function hasEnded(target)
 		send_msg(target, WHICHGAME .. " " .. CONFIRMED .. "/" .. TOTAL, ok_cb, false) -- Contagem a cada voto recebido
 
 		if string.find(WHICHGAME, "CSGO") or string.find(WHICHGAME, "CS") or string.find(WHICHGAME, "CONTER") or string.find(WHICHGAME, "COUNTER STRIKE") then
-			resetEverything("http://162.252.243.88/csgo")
+			resetEverything("http://peido.xyz/csgo")
 
 		elseif string.find(WHICHGAME, "RL") or string.find(WHICHGAME, "ROCKET LEAGUE") or string.find(WHICHGAME, "ROCKET") then
-			resetEverything("http://162.252.243.88/rocketleague")
+			resetEverything("http://peido.xyz/rocketleague")
 
 		elseif string.find(WHICHGAME, "GTA") or string.find(WHICHGAME, "GRAND THEFT AUTO") or string.find(WHICHGAME, "GTAV") or string.find(WHICHGAME, "GTA V") or string.find(WHICHGAME, "GTA5") or string.find(WHICHGAME, "GTA 5") then 
-			resetEverything("http://162.252.243.88/gta")
+			resetEverything("http://peido.xyz/gta")
 
 		elseif string.find(WHICHGAME, "ETS2") or string.find(WHICHGAME, "EUROTRUCK") or string.find(WHICHGAME, "EURO TRUCK") then
-			resetEverything("http://162.252.243.88/eurotruck")
+			resetEverything("http://peido.xyz/eurotruck")
 
 		elseif string.find(WHICHGAME, "DOTA") or string.find(WHICHGAME, "DOTA2") or string.find(WHICHGAME, "DOTA 2") or string.find(WHICHGAME, "DOTINHA") then
-			resetEverything("http://162.252.243.88/dota")
+			resetEverything("http://peido.xyz/dota")
+
+		elseif string.find(WHICHGAME, "OW") or string.find(WHICHGAME, "OVERWATCH") or string.find(WHICHGAME, "OVER") then
+			resetEverything("http://peido.xyz/over")
 
 		else
 			resetEverything(nil)

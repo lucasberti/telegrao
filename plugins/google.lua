@@ -5,7 +5,7 @@ local cache = {}
 
 local api_keys = _config.google_apis
 
-function get_google_data(text)
+local function get_google_data(text)
 	local url = "https://www.googleapis.com/customsearch/v1?"
 	url = url.."cx=006518944303354753471:drpbskdyusc"
 	url = url.."&hl=pt-BR"
@@ -31,7 +31,7 @@ function get_google_data(text)
 end
 
 
-function process_google_data(google, receiver, query)
+local function process_google_data(google, receiver, query)
 	local text = ""
 
 	if not google or not google.items or #google.items == 0 then
@@ -48,7 +48,7 @@ function process_google_data(google, receiver, query)
 
 end
 
-function run(msg, matches)
+local function run(msg, matches)
 	if is_from_original_chat(msg) or is_from_somewhere(msg) then
 		local receiver = get_receiver(msg)
 		local text = matches[1]
