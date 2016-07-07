@@ -141,6 +141,13 @@ function run(msg, matches)
 		if user_id == "80048195" then
 			return queryProfile("Tikomico-1650", mode)
 		end
+
+    -- -> Aehoo <--
+      -- 2berto (Humberto M. M. Duarte)
+      if user_id == "24975729" then
+        return queryProfile("TheXP-1777", mode)
+      end
+
 	end
 end
 
